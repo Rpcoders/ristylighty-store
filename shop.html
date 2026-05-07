@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | ristylighty</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- BASE -->
+  <link rel="stylesheet" href="css/base/reset.css">
+  <link rel="stylesheet" href="css/base/typography.css">
+
+  <!-- LAYOUT -->
+  <link rel="stylesheet" href="css/layout/navbar.css">
+  <link rel="stylesheet" href="css/layout/grid.css">
+
+  <!-- COMPONENTS -->
+  <link rel="stylesheet" href="css/components/buttons.css">
+  <link rel="stylesheet" href="css/components/cards.css">
+  <link rel="stylesheet" href="css/components/forms.css">
+
+  <!-- PAGE -->
+  <link rel="stylesheet" href="css/pages/shop.css">
+
+  <!-- UTILS -->
+  <link rel="stylesheet" href="css/utils/animations.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <div class="logo" style="display:flex; align-items:center; gap:8px;">
+    <img src="images/logo.png" style="width:28px;">
+    <span>ristylighty</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html" class="active">Shop</a>
+    <a href="collections.html">Collections</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <div class="nav-icons">
+    <a href="cart.html">🛒</a>
+  </div>
+
+</nav>
+
+<!-- SHOP PAGE -->
+<section class="shop-page container">
+
+  <!-- TITLE -->
+  <div class="section-title">
+    <h2>Shop All Products</h2>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="shop-controls">
+
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Search products..."
+      class="input"
+    >
+
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option value="anime">Anime</option>
+      <option value="oversized">Oversized</option>
+      <option value="trending">Trending</option>
+    </select>
+
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="product-grid" id="productGrid"></div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="container" style="text-align:center; padding:40px 0; color:var(--text-muted);">
+  <h3>ristylighty</h3>
+  <p>Anime Streetwear Brand</p>
+  <p>Privacy | Return | Shipping</p>
+  <p>© 2026 All rights reserved</p>
+</footer>
+
+<!-- JS -->
+<script src="js/shop.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* ============================= */
+/* 🔥 RESET (STRICT) */
+/* ============================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ============================= */
+/* 🧱 MEDIA RESET */
+/* ============================= */
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ============================= */
+/* 🧾 FORM RESET */
+/* ============================= */
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ============================= */
+/* 🔗 LINKS */
+/* ============================= */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ============================= */
+/* 📋 LISTS */
+/* ============================= */
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* ============================= */
+/* 🚫 SCROLL FIX */
+/* ============================= */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* ============================= */
+/* 🎯 DESIGN SYSTEM */
+/* ============================= */
+
+:root {
+
+  /* COLORS */
+  --bg-main: #0a0a0a;
+  --bg-soft: #111111;
+  --bg-elevated: #171717;
+
+  --text-main: #f5f5f5;
+  --text-muted: #a1a1aa;
+
+  --primary: #e11d48;
+  --primary-hover: #be123c;
+
+  --border: #27272a;
+
+  /* SHADOWS */
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.3);
+  --shadow-md: 0 8px 25px rgba(0,0,0,0.4);
+  --shadow-lg: 0 15px 40px rgba(0,0,0,0.5);
+
+  /* SPACING (STRICT SCALE) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* RADIUS */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* TRANSITIONS */
+  --transition-fast: 0.2s ease;
+  --transition: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* ============================= */
+/* 🎨 GLOBAL UI TOUCHES */
+/* ============================= */
+
+::selection {
+  background: var(--primary);
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-soft);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

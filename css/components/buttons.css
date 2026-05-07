@@ -1,0 +1,215 @@
+/* ============================= */
+/* 🔘 BUTTON SYSTEM (PREMIUM) */
+/* ============================= */
+
+/* BASE */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 12px 20px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+
+  cursor: pointer;
+  transition: var(--transition);
+
+  position: relative;
+  overflow: hidden;
+
+  white-space: nowrap;
+}
+
+/* PRESS EFFECT */
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* DISABLED */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================= */
+/* 🔥 PRIMARY (MAIN CTA) */
+/* ============================= */
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ============================= */
+/* ⚪️ OUTLINE */
+/* ============================= */
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--bg-soft);
+  transform: translateY(-2px);
+}
+
+/* ============================= */
+/* 🧊 GHOST */
+/* ============================= */
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.btn-ghost:hover {
+  background: var(--bg-soft);
+  color: var(--text-main);
+}
+
+/* ============================= */
+/* 🚨 DANGER */
+/* ============================= */
+
+.btn-danger {
+  background: #dc2626;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+/* ============================= */
+/* 🧩 SECONDARY */
+/* ============================= */
+
+.btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-soft);
+  transform: translateY(-2px);
+}
+
+/* ============================= */
+/* ✨ ZARA STYLE HOVER LINE */
+/* ============================= */
+
+.btn-line::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: var(--transition);
+}
+
+.btn-line:hover::after {
+  width: 100%;
+}
+
+/* ============================= */
+/* 🔥 PREMIUM FILL ANIMATION */
+/* ============================= */
+
+.btn-fill {
+  background: transparent;
+  border: 1px solid var(--text-main);
+  color: var(--text-main);
+  z-index: 1;
+}
+
+.btn-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--text-main);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: var(--transition);
+  z-index: -1;
+}
+
+.btn-fill:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-fill:hover {
+  color: black;
+}
+
+/* ============================= */
+/* 💫 ICON BUTTON */
+/* ============================= */
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* ============================= */
+/* 📏 SIZES */
+/* ============================= */
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: var(--text-xs);
+}
+
+.btn-lg {
+  padding: 14px 26px;
+  font-size: var(--text-md);
+}
+
+/* ============================= */
+/* ⏳ LOADING */
+/* ============================= */
+
+.btn-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.btn-loading::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  position: absolute;
+  animation: spin 0.6s linear infinite;
+}
+
+/* ============================= */
+/* 🎬 ANIMATION */
+/* ============================= */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | ristylighty</title>
+
+  <!-- BASE -->
+  <link rel="stylesheet" href="css/base/reset.css">
+  <link rel="stylesheet" href="css/base/typography.css">
+
+  <!-- COMPONENTS -->
+  <link rel="stylesheet" href="css/components/forms.css">
+  <link rel="stylesheet" href="css/components/buttons.css">
+
+  <!-- PAGE -->
+  <link rel="stylesheet" href="css/pages/auth.css">
+</head>
+
+<body class="auth-container">
+
+<div class="auth-box">
+
+  <!-- BRAND -->
+  <div style="text-align:center; margin-bottom:15px;">
+    <img src="images/logo.png" style="width:40px; margin-bottom:5px;">
+    <h2>ristylighty</h2>
+  </div>
+
+  <h3 style="text-align:center; margin-bottom:10px;">Login</h3>
+
+  <div class="form-group">
+    <input type="email" id="email" placeholder="Email">
+  </div>
+
+  <div class="form-group">
+    <input type="password" id="password" placeholder="Password">
+  </div>
+
+  <button class="btn btn-primary" onclick="login()">
+    Login
+  </button>
+
+  <p>
+    Don't have an account? 
+    <a href="signup.html">Signup</a>
+  </p>
+
+  <p id="msg" class="auth-message"></p>
+
+</div>
+
+<script>
+async function login() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const msg = document.getElementById("msg");
+
+  if (!email || !password) {
+    msg.innerText = "Email and password required";
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      msg.innerText = data.error || "Login failed";
+      return;
+    }
+
+    /* ✅ SAVE AUTH */
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    /* ✅ ROLE BASED REDIRECT */
+   const role = data.role;
+
+if (role === "admin") {
+  window.location.href = "admin.html";
+} else {
+  window.location.href = "index.html";
+}
+
+  } catch (err) {
+    msg.innerText = "Server error";
+    console.error(err);
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+/* ============================= */
+/* 📐 LAYOUT SYSTEM (ADVANCED) */
+/* ============================= */
+
+/* ============================= */
+/* 📦 CONTAINER SYSTEM */
+/* ============================= */
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.container-sm {
+  max-width: 960px;
+}
+
+.container-lg {
+  max-width: 1440px;
+}
+
+.container-full {
+  width: 100%;
+  padding: 0 var(--space-md);
+}
+
+/* ============================= */
+/* 📏 SECTION SYSTEM (CRITICAL FIX) */
+/* ============================= */
+
+.section {
+  padding: var(--space-2xl) 0;
+}
+
+.section-tight {
+  padding: var(--space-lg) 0;
+}
+
+.section-loose {
+  padding: calc(var(--space-2xl) * 1.2) 0;
+}
+
+/* 👉 EACH SECTION GETS BREATHING SPACE */
+.section > .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* ============================= */
+/* 🧱 GRID SYSTEM */
+/* ============================= */
+
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+/* fixed columns */
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* 🔥 AUTO RESPONSIVE GRID (REAL USE) */
+.grid-auto {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid-auto-sm {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.grid-auto-lg {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* ============================= */
+/* 🎯 ALIGNMENT */
+/* ============================= */
+
+.grid-center {
+  place-items: center;
+}
+
+.grid-start {
+  align-items: start;
+}
+
+.grid-end {
+  align-items: end;
+}
+
+.grid-between {
+  justify-content: space-between;
+}
+
+/* ============================= */
+/* 🔁 FLEX SYSTEM */
+/* ============================= */
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-gap-sm {
+  gap: var(--space-sm);
+}
+
+.flex-gap-md {
+  gap: var(--space-md);
+}
+
+.flex-gap-lg {
+  gap: var(--space-lg);
+}
+
+/* ============================= */
+/* 🧠 CONTENT WIDTH CONTROL */
+/* ============================= */
+
+.content {
+  max-width: 720px;
+}
+
+.content-center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ============================= */
+/* 🖼 IMAGE SYSTEM (IMPORTANT FIX) */
+/* ============================= */
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-zoom {
+  transition: transform var(--transition);
+}
+
+.img-zoom:hover {
+  transform: scale(1.08);
+}
+
+/* aspect ratios */
+.img-square {
+  aspect-ratio: 1 / 1;
+}
+
+.img-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.img-landscape {
+  aspect-ratio: 16 / 9;
+}
+
+/* ============================= */
+/* 🧱 SPACING UTILITIES */
+/* ============================= */
+
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+
+/* ============================= */
+/* 🧩 SECTION SEPARATION FIX */
+/* ============================= */
+
+/* 👉 prevents sections from sticking */
+.section + .section {
+  border-top: 1px solid var(--border);
+}
+
+/* ============================= */
+/* 📱 RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-4,
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 0 var(--space-sm);
+  }
+
+  .section {
+    padding: var(--space-xl) 0;
+  }
+}

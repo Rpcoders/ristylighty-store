@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/checkout.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">ristylighty</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+
+  <div class="nav-icons">
+    <a href="cart.html">🛒</a>
+  </div>
+</nav>
+
+<section class="checkout-container">
+
+  <!-- LEFT: FORM -->
+  <div class="checkout-form">
+
+    <h2>Shipping Details</h2>
+
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="phone" placeholder="Phone Number">
+    <input type="text" id="address" placeholder="Address">
+    <input type="text" id="city" placeholder="City">
+    <input type="text" id="pincode" placeholder="Pincode">
+
+    <h3>Payment Method</h3>
+
+    <label>
+      <input type="radio" name="payment" value="cod" checked>
+      Cash on Delivery
+    </label>
+
+    <label>
+      <input type="radio" name="payment" value="online">
+      UPI / Card (Demo)
+    </label>
+
+    <!-- 🔥 FIXED BUTTON -->
+    <button onclick="handleCheckout()" class="checkout-btn">
+      PLACE ORDER
+    </button>
+
+  </div>
+
+  <!-- RIGHT: ORDER SUMMARY -->
+  <div class="order-summary">
+
+    <h2>Order Summary</h2>
+
+    <div id="summary-items"></div>
+
+    <div class="row">
+      <span>Subtotal</span>
+      <span id="subtotal">₹0</span>
+    </div>
+
+    <div class="row">
+      <span>Delivery</span>
+      <span id="delivery">₹0</span>
+    </div>
+
+    <div class="row total">
+      <span>Total</span>
+      <span id="total">₹0</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- 🔥 REQUIRED FOR RAZORPAY -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script src="js/checkout.js"></script>
+
+<!-- 🔥 MAIN CONTROLLER -->
+<script>
+function handleCheckout() {
+
+  const method = document.querySelector('input[name="payment"]:checked').value;
+
+  if (method === "cod") {
+    placeOrder(); // existing function
+  } else {
+    // 🔥 ONLINE PAYMENT
+    const totalText = document.getElementById("total").innerText.replace("₹", "");
+    const amount = Number(totalText);
+
+    payNow(amount); // from checkout.js
+  }
+}
+</script>
+
+</body>
+</html>

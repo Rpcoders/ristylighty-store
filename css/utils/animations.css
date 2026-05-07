@@ -1,0 +1,271 @@
+/* ============================= */
+/* 🎬 GLOBAL ANIMATION SYSTEM */
+/* ============================= */
+
+/* Smooth base for everything */
+* {
+  transition: background-color var(--transition),
+              color var(--transition),
+              border-color var(--transition);
+}
+
+/* ============================= */
+/* ⚡ HOVER LIFT SYSTEM */
+/* ============================= */
+
+.hover-lift {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================= */
+/* 🔍 IMAGE ZOOM */
+/* ============================= */
+
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.6s ease;
+}
+
+.img-zoom:hover img {
+  transform: scale(1.1);
+}
+
+/* ============================= */
+/* 🎯 FADE + SLIDE (ENTRY) */
+/* ============================= */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.7s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-down {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: 0.7s ease;
+}
+
+.fade-down.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: 0.7s ease;
+}
+
+.fade-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: 0.7s ease;
+}
+
+.fade-right.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================= */
+/* ✨ STAGGER SYSTEM */
+/* ============================= */
+
+.stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.stagger.show > * {
+  animation: staggerFade 0.6s ease forwards;
+}
+
+.stagger.show > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger.show > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger.show > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger.show > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger.show > *:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes staggerFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================= */
+/* 🔥 BUTTON RIPPLE EFFECT */
+/* ============================= */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.btn:active::after {
+  width: 200px;
+  height: 200px;
+  transition: 0.4s ease;
+}
+
+/* ============================= */
+/* 🎭 OVERLAY FADE */
+/* ============================= */
+
+.overlay-fade {
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+.parent:hover .overlay-fade {
+  opacity: 1;
+}
+
+/* ============================= */
+/* 🧠 NAV LINK UNDERLINE */
+/* ============================= */
+
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ============================= */
+/* 🌀 LOADING SKELETON */
+/* ============================= */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-soft) 25%,
+    var(--bg-elevated) 50%,
+    var(--bg-soft) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.2s infinite;
+}
+
+@keyframes skeletonLoading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ============================= */
+/* 🎯 SCALE IN */
+/* ============================= */
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: 0.4s ease;
+}
+
+.scale-in.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ============================= */
+/* ⚡ FAST MICRO INTERACTIONS */
+/* ============================= */
+
+.tap {
+  transition: transform 0.15s ease;
+}
+
+.tap:active {
+  transform: scale(0.95);
+}
+
+/* ============================= */
+/* 🌫 BLUR IN */
+/* ============================= */
+.blur-in {
+  opacity: 0;
+  filter: blur(10px);
+  transition: 0.6s ease;
+}
+
+.blur-in.show {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* ============================= */
+/* 🎬 HERO TEXT REVEAL */
+/* ============================= */
+
+.text-reveal span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: textReveal 0.6s forwards;
+}
+
+.text-reveal span:nth-child(1) { animation-delay: 0.1s; }
+.text-reveal span:nth-child(2) { animation-delay: 0.2s; }
+.text-reveal span:nth-child(3) { animation-delay: 0.3s; }
+.text-reveal span:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes textReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================= */
+/* 📱 PERFORMANCE SAFE */
+/* ============================= */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

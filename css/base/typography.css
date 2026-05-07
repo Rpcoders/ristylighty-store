@@ -1,0 +1,147 @@
+/* ============================= */
+/* 🔤 TYPOGRAPHY SYSTEM (PREMIUM) */
+/* ============================= */
+
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ============================= */
+/* 🎯 BASE */
+/* ============================= */
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--text-md);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+/* ============================= */
+/* 🧱 TYPO SCALE */
+/* ============================= */
+
+:root {
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: 40px;
+  --text-3xl: 56px;
+}
+
+/* ============================= */
+/* 🔠 HEADINGS */
+/* ============================= */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+h1 {
+  font-size: clamp(40px, 5vw, var(--text-3xl));
+}
+
+h2 {
+  font-size: clamp(28px, 4vw, var(--text-2xl));
+}
+
+h3 {
+  font-size: var(--text-xl);
+}
+
+h4 {
+  font-size: var(--text-lg);
+}
+
+h5 {
+  font-size: var(--text-md);
+}
+
+h6 {
+  font-size: var(--text-sm);
+}
+
+/* ============================= */
+/* 📝 TEXT */
+/* ============================= */
+
+p {
+  font-size: var(--text-md);
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.small-text {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* ============================= */
+/* 🔗 LINKS */
+/* ============================= */
+
+a {
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+/* ============================= */
+/* 🧾 FORM */
+/* ============================= */
+
+input,
+textarea,
+select {
+  font-size: var(--text-sm);
+  color: var(--text-main);
+}
+
+::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* ============================= */
+/* 🧠 UTILITIES */
+/* ============================= */
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.text-bold { font-weight: 600; }
+.text-light { font-weight: 300; }
+
+.uppercase { text-transform: uppercase; }
+.capitalize { text-transform: capitalize; }
+
+/* ============================= */
+/* 🏷️ BRAND */
+/* ============================= */
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ============================= */
+/* 📌 SECTION TEXT */
+/* ============================= */
+
+.section-title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.subheading {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}

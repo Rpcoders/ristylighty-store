@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Order Success - ristylighty</title>
+
+  <link rel="stylesheet" href="css/base/reset.css">
+  <link rel="stylesheet" href="css/base/typography.css">
+  <link rel="stylesheet" href="css/layout/navbar.css">
+
+  <style>
+
+    body{
+      background:#000;
+      color:#fff;
+      font-family:Poppins,sans-serif;
+    }
+
+    /* =========================
+    NAVBAR
+    ========================= */
+
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      padding:18px 40px;
+
+      border-bottom:1px solid #1f1f1f;
+
+      background:#0b0b0b;
+    }
+
+    .logo{
+      font-size:24px;
+      font-weight:700;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:24px;
+
+      list-style:none;
+    }
+
+    .nav-links a{
+      color:#ccc;
+      text-decoration:none;
+    }
+
+    .nav-links a:hover{
+      color:#fff;
+    }
+
+    /* =========================
+    SUCCESS PAGE
+    ========================= */
+
+    .success-page{
+      min-height:85vh;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      padding:40px 20px;
+    }
+
+    .success-card{
+      width:100%;
+      max-width:700px;
+
+      background:#111;
+
+      border:1px solid #222;
+
+      border-radius:24px;
+
+      padding:60px 40px;
+
+      text-align:center;
+
+      box-shadow:
+      0 0 40px rgba(255,255,255,0.03);
+    }
+
+    /* ICON */
+
+    .success-icon{
+      width:110px;
+      height:110px;
+
+      border-radius:50%;
+
+      background:#1ed760;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      margin:0 auto 30px;
+
+      font-size:56px;
+      font-weight:bold;
+
+      color:#000;
+    }
+
+    /* TEXT */
+
+    .success-card h1{
+      font-size:42px;
+      margin-bottom:16px;
+    }
+
+    .success-card p{
+      color:#bcbcbc;
+
+      line-height:1.7;
+
+      margin-bottom:16px;
+    }
+
+    /* INFO BOX */
+
+    .order-info{
+      margin-top:30px;
+
+      background:#181818;
+
+      border:1px solid #262626;
+
+      border-radius:16px;
+
+      padding:24px;
+
+      text-align:left;
+    }
+
+    .order-info div{
+      display:flex;
+      justify-content:space-between;
+
+      margin-bottom:14px;
+
+      color:#d7d7d7;
+    }
+
+    /* BUTTONS */
+
+    .success-actions{
+      display:flex;
+      gap:16px;
+
+      justify-content:center;
+
+      margin-top:34px;
+
+      flex-wrap:wrap;
+    }
+
+    .success-btn{
+      padding:16px 26px;
+
+      border-radius:12px;
+
+      text-decoration:none;
+
+      font-weight:600;
+
+      transition:0.3s;
+    }
+
+    .primary-btn{
+      background:#fff;
+      color:#000;
+    }
+
+    .secondary-btn{
+      background:#1c1c1c;
+      color:#fff;
+
+      border:1px solid #333;
+    }
+
+    .success-btn:hover{
+      transform:translateY(-3px);
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .navbar{
+        flex-direction:column;
+        gap:18px;
+      }
+
+      .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .success-card{
+        padding:40px 24px;
+      }
+
+      .success-card h1{
+        font-size:32px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <div class="logo">
+    ristylighty
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+
+</nav>
+
+<!-- SUCCESS -->
+<section class="success-page">
+
+  <div class="success-card">
+
+    <div class="success-icon">
+      ✓
+    </div>
+
+    <h1>Order Confirmed</h1>
+
+    <p class="main-text">
+      Thank you for your purchase.
+      Your order has been placed successfully.
+    </p>
+
+    <!-- INFO -->
+    <div class="order-info">
+
+      <div>
+        <span>Order ID</span>
+        <span>#RST2026</span>
+      </div>
+
+      <div>
+        <span>📦 Delivery</span>
+        <span>3–5 Days</span>
+      </div>
+
+      <div>
+        <span>📲 Updates</span>
+        <span>On Your Phone</span>
+      </div>
+
+      <div>
+        <span>🔄 Returns</span>
+        <span>Easy 7-Day Returns</span>
+      </div>
+
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="success-actions">
+
+      <a href="shop.html"
+         class="success-btn primary-btn">
+         Continue Shopping
+      </a>
+
+      <a href="index.html"
+         class="success-btn secondary-btn">
+         Back To Home
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</body>
+</html>

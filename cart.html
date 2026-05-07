@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - ristylighty</title>
+
+  <!-- BASE -->
+  <link rel="stylesheet" href="css/base/reset.css">
+  <link rel="stylesheet" href="css/base/typography.css">
+
+  <!-- LAYOUT -->
+  <link rel="stylesheet" href="css/layout/navbar.css">
+  <link rel="stylesheet" href="css/layout/grid.css">
+
+  <!-- COMPONENTS -->
+  <link rel="stylesheet" href="css/components/buttons.css">
+  <link rel="stylesheet" href="css/components/cards.css">
+
+  <!-- PAGE -->
+  <link rel="stylesheet" href="css/pages/cart.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">ristylighty</div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="collections.html">Collections</a></li>
+  </ul>
+
+  <div class="nav-icons">
+    <a href="cart.html">🛒</a>
+  </div>
+</nav>
+
+<!-- CART -->
+<section class="cart-page container">
+
+  <h1>Your Cart</h1>
+
+  <!-- EMPTY STATE -->
+  <div id="emptyCart" class="empty-cart">
+    <h2>Your cart is empty</h2>
+    <p>Discover trending anime streetwear picks below</p>
+
+    <div class="suggestions">
+      <a href="shop.html?category=trending" class="btn btn-outline">🔥 Trending</a>
+      <a href="shop.html?category=anime" class="btn btn-outline">🎌 Anime Picks</a>
+      <a href="shop.html?category=oversized" class="btn btn-outline">👕 Oversized Fit</a>
+    </div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="cart-layout">
+
+    <!-- ITEMS -->
+    <div id="cartItems" class="cart-items"></div>
+
+    <!-- SUMMARY -->
+    <div id="cartSummary" class="cart-summary">
+      <h2>Order Summary</h2>
+
+      <div class="summary-row">
+        <span>Total</span>
+        <span>₹<span id="total">0</span></span>
+      </div>
+
+      <!-- 🔥 FIX: BUTTON WORKING -->
+      <a href="checkout.html" class="btn btn-primary checkout-link">
+  Proceed to Checkout
+</a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- 🔥 NEW: SUGGESTIONS (VISIBLE ALWAYS) -->
+<section class="container" style="margin-top:40px;">
+  <h2 style="text-align:center;">You May Also Like</h2>
+  <div id="suggestions" class="grid grid-auto"></div>
+</section>
+
+<!-- 🔥 FIX: CHECKOUT NAVIGATION -->
+<script>
+  function goCheckout() {
+    window.location.href = "checkout.html";
+  }
+</script>
+
+<script src="js/cart.js"></script>
+
+</body>
+</html>

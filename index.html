@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ristylighty</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- BASE -->
+  <link rel="stylesheet" href="css/base/reset.css">
+  <link rel="stylesheet" href="css/base/typography.css">
+
+  <!-- LAYOUT -->
+  <link rel="stylesheet" href="css/layout/navbar.css">
+  <link rel="stylesheet" href="css/layout/grid.css">
+
+  <!-- COMPONENTS -->
+  <link rel="stylesheet" href="css/components/buttons.css">
+  <link rel="stylesheet" href="css/components/cards.css">
+
+  <!-- PAGE -->
+  <link rel="stylesheet" href="css/pages/home.css">
+
+  <!-- UTILS -->
+  <link rel="stylesheet" href="css/utils/animations.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+  <div class="logo" style="display:flex; align-items:center; gap:8px;">
+    <img src="images/logo.png" style="width:28px;">
+    <span>ristylighty</span>
+  </div>
+
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="collections.html">Collections</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <div class="nav-icons">
+    <a href="cart.html">🛒</a>
+  </div>
+
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h1>ristylighty</h1>
+      <p>Premium Anime Streetwear</p>
+      <a href="shop.html" class="btn btn-primary">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<section class="home-search container">
+
+  <h2>Find Your Style</h2>
+
+  <div class="search-box">
+    <input type="text" id="homeSearch" placeholder="Search anime tees...">
+    <button class="btn btn-primary" onclick="goSearch()">Search</button>
+  </div>
+
+  <div class="quick-tags">
+    <a href="shop.html?category=anime">Anime</a>
+    <a href="shop.html?category=oversized">Oversized</a>
+    <a href="shop.html?category=trending">Trending</a>
+  </div>
+
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories container">
+  <div class="grid grid-3">
+
+    <a href="shop.html?category=anime" class="cat-card" style="background-image:url('images/anime-front.jpg')">
+      <h3>Anime</h3>
+    </a>
+
+    <a href="shop.html?category=oversized" class="cat-card" style="background-image:url('images/anime-back.jpg')">
+      <h3>Oversized</h3>
+    </a>
+
+    <a href="shop.html?category=trending" class="cat-card" style="background-image:url('images/anime-close.jpg')">
+      <h3>Trending</h3>
+    </a>
+
+  </div>
+</section>
+
+<!-- FEATURED COLLECTION (REAL DYNAMIC LOGIC) -->
+<section class="featured container">
+  <div class="section-title">
+    <h2>Featured Collection</h2>
+  </div>
+
+  <div class="grid grid-auto" id="productGrid"></div>
+</section>
+
+<script>
+async function loadFeatured() {
+  const res = await fetch("/api/products");
+  const data = await res.json();
+
+  // =========================
+  // 🔥 REAL FEATURED ENGINE
+  // =========================
+  const featured = data
+    .map(p => ({
+      ...p,
+      score:
+        (p.category === "trending" ? 3 : 0) +
+        (p.category === "anime" ? 2 : 0) +
+        (p.price > 999 ? 2 : 0) +
+        (p.price < 500 ? 1 : 0)
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 8);
+
+  const grid = document.getElementById("productGrid");
+  grid.innerHTML = "";
+
+  featured.forEach(p => {
+    grid.innerHTML += `
+      <div class="card">
+        <img src="${p.image}">
+        <h3>${p.name}</h3>
+        <p>₹${p.price}</p>
+
+        <small style="opacity:0.7;">
+          ${p.category.toUpperCase()} • rating ${p.score}
+        </small>
+
+        <a href="product.html?id=${p._id}" class="btn btn-primary">
+          View Product
+        </a>
+      </div>
+    `;
+  });
+}
+
+loadFeatured();
+</script>
+
+<!-- STORY -->
+<section class="story container">
+ <div class="story-content">
+  <h2>Our Story</h2>
+  <p>
+    Ristylighty is built for anime lovers & streetwear culture.
+    Premium oversized t-shirts with high-quality prints that last long,
+    stay breathable, and deliver bold street-style looks.
+  </p>
+</section>
+
+<!-- TRUST -->
+<section class="trust container">
+
+  <div class="trust-box">
+    <span class="icon">🚚</span>
+    <h4>Free Delivery</h4>
+    <p>Above ₹499 across India</p>
+  </div>
+
+  <div class="trust-box">
+    <span class="icon">🔄</span>
+    <h4>Easy Returns</h4>
+    <p>7-day hassle-free return policy</p>
+  </div>
+
+  <div class="trust-box">
+    <span class="icon">🧵</span>
+    <h4>Premium Fabric</h4>
+    <p>100% cotton, breathable quality</p>
+  </div>
+
+  <div class="trust-box">
+    <span class="icon">🎨</span>
+    <h4>Long-lasting Prints</h4>
+    <p>Fade-resistant anime artwork</p>
+  </div>
+
+  <div class="trust-box">
+    <span class="icon">🌬️</span>
+    <h4>Breathable Fit</h4>
+    <p>Comfortable streetwear oversized fit</p>
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="features container">
+  <h2>Why Choose Ristylighty?</h2>
+  <ul>
+    <li>Heavy GSM premium cotton</li>
+    <li>Fade-resistant anime prints</li>
+    <li>Oversized streetwear fit</li>
+    <li>Comfort for daily wear</li>
+  </ul>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews container">
+  <h2>Customer Reviews</h2>
+  <p>“Print quality is insane” – Aayush</p>
+  <p>“Fabric is super comfortable” – Riya</p>
+  <p>“Perfect oversized fit” – Karan</p>
+</section>
+
+<!-- DELIVERY -->
+<section class="delivery container">
+  <h2>Delivery Info</h2>
+  <p>
+    Fast delivery across India in 3–7 days.  
+    Free shipping above ₹499.  
+    Easy 7-day return policy.
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer class="container" style="text-align:center; padding:40px 0; color:var(--text-muted);">
+  <h3>ristylighty</h3>
+  <p>Anime Streetwear Brand</p>
+  <p>Privacy | Return | Shipping</p>
+  <p>© 2026 All rights reserved</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+/* ============================= */
+/* 🔐 AUTH PAGE (PREMIUM) */
+/* ============================= */
+
+/* ===== PAGE WRAPPER ===== */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--space-lg);
+
+  background: radial-gradient(circle at top, #0f0f0f, #000);
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle glow effect */
+.auth-container::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(225,29,72,0.15), transparent 70%);
+  top: -100px;
+  right: -100px;
+  filter: blur(80px);
+}
+
+/* ============================= */
+/* 📦 AUTH BOX */
+/* ============================= */
+
+.auth-box {
+  width: 100%;
+  max-width: 380px;
+
+  padding: var(--space-xl);
+
+  background: rgba(20, 20, 20, 0.9);
+  backdrop-filter: blur(12px);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-lg);
+
+  position: relative;
+  z-index: 2;
+
+  animation: fadeUp 0.5s ease;
+}
+
+/* hover lift (subtle) */
+.auth-box:hover {
+  transform: translateY(-3px);
+}
+
+/* ============================= */
+/* 🧠 HEADER */
+/* ============================= */
+
+.auth-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.auth-logo {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.auth-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ============================= */
+/* 🧾 FORM */
+/* ============================= */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* ============================= */
+/* ✏️ INPUT UPGRADE */
+/* ============================= */
+
+.input {
+  height: 46px;
+  padding: 0 14px;
+
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+
+  background: var(--bg-soft);
+  color: var(--text-main);
+
+  font-size: 14px;
+
+  transition: var(--transition);
+}
+
+/* focus glow */
+.input:focus {
+  border-color: var(--primary);
+  background: var(--bg-main);
+  box-shadow: 0 0 0 2px rgba(225,29,72,0.2);
+}
+
+/* ============================= */
+/* 🔘 BUTTON FIX */
+/* ============================= */
+
+.auth-form .btn {
+  margin-top: var(--space-sm);
+  height: 46px;
+  font-size: 14px;
+}
+
+/* ============================= */
+/* 🔗 FOOTER */
+/* ============================= */
+
+.auth-footer {
+  margin-top: var(--space-md);
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.auth-footer a {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* ============================= */
+/* ⚠️ MESSAGE STATES */
+/* ============================= */
+
+.auth-message {
+  font-size: 13px;
+  text-align: center;
+  margin-top: var(--space-sm);
+}
+
+.auth-error {
+  color: #dc2626;
+}
+
+.auth-success {
+  color: #16a34a;
+}
+
+/* ============================= */
+/* 🔒 INPUT FIXES */
+/* ============================= */
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px var(--bg-soft) inset;
+  -webkit-text-fill-color: var(--text-main);
+}
+
+input {
+  appearance: none;
+}
+
+/* ============================= */
+/* ✨ ANIMATION */
+/* ============================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

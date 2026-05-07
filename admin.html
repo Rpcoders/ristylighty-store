@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | ristylighty</title>
+
+  <!-- BASE -->
+  <link rel="stylesheet" href="css/base/reset.css">
+  <link rel="stylesheet" href="css/base/typography.css">
+
+  <!-- LAYOUT -->
+  <link rel="stylesheet" href="css/layout/grid.css">
+
+  <!-- COMPONENTS -->
+  <link rel="stylesheet" href="css/components/forms.css">
+  <link rel="stylesheet" href="css/components/buttons.css">
+  <link rel="stylesheet" href="css/components/cards.css">
+
+  <!-- PAGE -->
+  <link rel="stylesheet" href="css/pages/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+  <!-- 🔹 TOP BAR -->
+  <div class="admin-topbar">
+    <button id="menuBtn" class="menu-btn">⋮</button>
+    <h1 class="admin-title">Dashboard</h1>
+  </div>
+
+  <!-- 🔹 PROFILE PANEL -->
+  <div id="profilePanel" class="profile-panel">
+    <h3>ristylighty</h3>
+
+    <a href="#">Dashboard</a>
+    <a href="#">Products</a>
+    <a href="#">Orders</a>
+    <a href="#">Users</a>
+
+    <button class="btn btn-danger" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- 🔹 MAIN CONTENT -->
+  <div class="admin-content">
+
+    <!-- ✅ ANALYTICS (FIXED GRID) -->
+     <div class="admin-controls">
+  <input id="searchInput" class="input" placeholder="Search product...">
+
+  <select id="filterCategory" class="select">
+    <option value="">All</option>
+    <option value="anime">Anime</option>
+    <option value="tshirt">T-Shirt</option>
+    <option value="hoodie">Hoodie</option>
+  </select>
+</div>
+
+    <div class="analytics-grid">
+
+      <div class="stat-card">
+        <h3>Total Revenue</h3>
+        <p id="revenue">₹0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Orders</h3>
+        <p id="orders">0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Products</h3>
+        <p id="productsCount">0</p>
+      </div>
+
+    </div>
+
+    <!-- 🔹 ADD PRODUCT -->
+    <div class="panel">
+      <h2>Add Product</h2>
+
+      <div class="form-group">
+        <label>Product Name</label>
+        <input id="name" class="input">
+      </div>
+
+      <div class="form-group">
+        <label>Price</label>
+        <input id="price" class="input">
+      </div>
+
+      <!-- IMAGE OPTIONS -->
+      <div class="form-group">
+        <label>Upload Image</label>
+        <input type="file" id="imageFile">
+        <button class="btn btn-secondary" onclick="uploadImage()">Upload</button>
+      </div>
+
+      <div class="form-group">
+        <label>OR Image URL</label>
+        <input id="image" class="input" placeholder="Paste URL">
+      </div>
+
+      <!-- CATEGORY -->
+      <div class="form-group">
+        <label>Category</label>
+        <select id="category" class="select">
+          <option value="">Select category</option>
+          <option value="anime">Anime</option>
+          <option value="tshirt">T-Shirt</option>
+          <option value="hoodie">Hoodie</option>
+          <option value="trending">Trending</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Custom Category</label>
+        <input id="customCategory" class="input" placeholder="Optional">
+      </div>
+
+      <button class="btn btn-primary" onclick="addProduct()">
+        Add Product
+      </button>
+    </div>
+
+    <!-- 🔹 PRODUCT LIST -->
+    <div class="panel">
+      <h2>Products</h2>
+      <div id="productList"></div>
+    </div>
+
+  </div>
+</div>
+
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <h3>Edit Product</h3>
+
+    <input id="editName" class="input">
+    <input id="editPrice" class="input">
+    <input id="editImage" class="input">
+    <input id="editCategory" class="input">
+
+    <button class="btn btn-primary" onclick="updateProduct()">Save</button>
+    <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+/* ============================= */
+/* 🛍 SHOP PAGE (PREMIUM SYSTEM) */
+/* ============================= */
+
+.shop-page {
+  padding: var(--space-2xl) 0;
+}
+
+/* ============================= */
+/* 📦 LAYOUT */
+/* ============================= */
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+/* ============================= */
+/* 🎛 SIDEBAR */
+/* ============================= */
+
+.shop-sidebar {
+  position: sticky;
+  top: 90px;
+
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+
+  padding: var(--space-lg);
+}
+
+.shop-sidebar h3 {
+  font-size: 14px;
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* filter group */
+.filter-group {
+  margin-bottom: var(--space-lg);
+}
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.filter-group label:hover {
+  color: var(--text-main);
+}
+
+/* ============================= */
+/* 🧠 TOPBAR */
+/* ============================= */
+
+.shop-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: var(--space-xl);
+  gap: var(--space-md);
+}
+
+/* search */
+.shop-search {
+  flex: 1;
+  max-width: 400px;
+}
+
+/* sort */
+.shop-sort {
+  width: 180px;
+}
+
+/* ============================= */
+/* 🧱 PRODUCT GRID */
+/* ============================= */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-xl);
+}
+
+/* ============================= */
+/* 🛍 PRODUCT CARD (ZARA STYLE) */
+/* ============================= */
+
+.product-card {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+
+  background: var(--bg-elevated);
+  transition: var(--transition);
+}
+
+/* hover depth */
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+/* ============================= */
+/* 🖼 IMAGE */
+/* ============================= */
+
+.product-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* zoom */
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+/* ============================= */
+/* 🎯 OVERLAY (PREMIUM) */
+/* ============================= */
+
+.product-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.1)
+  );
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+/* buttons inside overlay */
+.product-overlay .btn {
+  margin-bottom: var(--space-md);
+  transform: translateY(10px);
+}
+
+.product-card:hover .product-overlay .btn {
+  transform: translateY(0);
+}
+
+/* ============================= */
+/* 🏷 BADGE */
+/* ============================= */
+
+.product-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  background: var(--primary);
+  color: white;
+
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================= */
+/* 📄 INFO */
+/* ============================= */
+
+.product-info {
+  padding: var(--space-md);
+}
+
+.product-title {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.product-price {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ============================= */
+/* 🧊 EMPTY STATE */
+/* ============================= */
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-2xl);
+  color: var(--text-muted);
+}
+
+/* ============================= */
+/* 📱 RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 1024px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-sidebar {
+    position: static;
+  }
+}
+@media (max-width: 768px) {
+  .shop-topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .shop-sort {
+    width: 100%;
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Collections | ristylighty</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- BASE -->
+  <link rel="stylesheet" href="css/base/reset.css">
+  <link rel="stylesheet" href="css/base/typography.css">
+
+  <!-- LAYOUT -->
+  <link rel="stylesheet" href="css/layout/navbar.css">
+  <link rel="stylesheet" href="css/layout/grid.css">
+
+  <!-- COMPONENTS -->
+  <link rel="stylesheet" href="css/components/buttons.css">
+  <link rel="stylesheet" href="css/components/cards.css">
+
+  <!-- PAGE -->
+  <link rel="stylesheet" href="css/pages/home.css">
+  <link rel="stylesheet" href="css/pages/shop.css">
+
+  <!-- UTILS -->
+  <link rel="stylesheet" href="css/utils/animations.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <img src="images/logo.png" style="height:28px; vertical-align:middle;">
+    ristylighty
+  </div>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="collections.html" class="active">Collections</a>
+    <a href="about.html">About</a>
+  </div>
+
+  <div class="nav-icons">
+    <a href="cart.html">🛒</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Collections</h1>
+    <p>Explore styles that define your identity</p>
+  </div>
+</section>
+
+<!-- CATEGORY GRID -->
+<section class="categories container section">
+  <div class="grid grid-3">
+
+    <a href="shop.html?category=anime" class="cat-card" style="background-image:url('images/anime-front.jpg')">
+      <h3>Anime</h3>
+    </a>
+
+    <a href="shop.html?category=oversized" class="cat-card" style="background-image:url('images/anime-back.jpg')">
+      <h3>Oversized</h3>
+    </a>
+
+    <a href="shop.html?category=trending" class="cat-card" style="background-image:url('images/anime-close.jpg')">
+      <h3>Trending</h3>
+    </a>
+
+  </div>
+</section>
+
+<!-- 🔥 DYNAMIC SUGGESTION SECTION -->
+<section class="container section">
+  <div class="section-title">
+    <h2>Recommended For You</h2>
+  </div>
+
+  <div class="grid grid-auto" id="suggestedProducts"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="section">
+  <h3>ristylighty</h3>
+  <p>Modern Essentials. Clean Identity.</p>
+  <p>© 2026 All rights reserved</p>
+</footer>
+
+<script src="js/collections.js"></script>
+
+</body>
+</html>

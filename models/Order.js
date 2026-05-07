@@ -1,0 +1,17 @@
+const mongoose = require("mongoose");
+
+const orderSchema = new mongoose.Schema({
+  userId: String,
+  items: Array,
+  totalAmount: Number,
+  status: {
+    type: String,
+    default: "confirmed"
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+module.exports = mongoose.model("Order", orderSchema);

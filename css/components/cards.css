@@ -1,0 +1,258 @@
+/* ============================= */
+/* 🧱 CARD SYSTEM (PREMIUM) */
+/* ============================= */
+
+.card {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+
+  padding: var(--space-md);
+
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+/* ============================= */
+/* 🛍 PRODUCT CARD */
+/* ============================= */
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+}
+
+/* ============================= */
+/* 🖼 IMAGE WRAPPER */
+/* ============================= */
+
+.product-img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+/* IMAGE */
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-slow);
+}
+
+/* ZARA ZOOM */
+.product-card:hover .product-img img {
+  transform: scale(1.08);
+}
+
+/* ============================= */
+/* 🌑 OVERLAY (HOVER ACTION) */
+/* ============================= */
+
+.product-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+/* ============================= */
+/* 🔘 QUICK ACTION BUTTONS */
+/* ============================= */
+
+.overlay-btn {
+  background: white;
+  color: black;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.overlay-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* ============================= */
+/* 🏷 BADGES */
+/* ============================= */
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  background: var(--primary);
+  color: white;
+
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.badge-secondary {
+  background: black;
+  border: 1px solid var(--border);
+}
+
+/* ============================= */
+/* 📄 PRODUCT INFO */
+/* ============================= */
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-title {
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+
+.product-price {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.product-old-price {
+  font-size: 12px;
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* ============================= */
+/* 🧩 ACTION AREA */
+/* ============================= */
+
+.product-actions {
+  margin-top: var(--space-sm);
+  display: flex;
+  gap: 8px;
+}
+
+/* ============================= */
+/* 📦 PRODUCT GRID */
+/* ============================= */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* ============================= */
+/* 💀 SKELETON LOADING */
+/* ============================= */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-soft) 25%,
+    var(--bg-elevated) 50%,
+    var(--bg-soft) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton 1.2s infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ============================= */
+/* 🧠 CATEGORY CARD */
+/* ============================= */
+
+.category-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.category-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: var(--transition-slow);
+}
+
+.category-card:hover img {
+  transform: scale(1.1);
+}
+
+/* overlay */
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: var(--text-lg);
+  font-weight: 600;
+
+  transition: var(--transition);
+}
+.category-card:hover .category-overlay {
+  background: rgba(0,0,0,0.6);
+}
+
+/* ============================= */
+/* 🌟 FEATURED CARD */
+/* ============================= */
+
+.card-featured {
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 25px rgba(225, 29, 72, 0.25);
+}
+
+/* ============================= */
+/* 📱 RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .product-title {
+    font-size: 14px;
+  }
+
+  .product-price {
+    font-size: 13px;
+  }
+}
