@@ -9,131 +9,267 @@
 .hero {
   position: relative;
   min-height: 90vh;
+  overflow: hidden;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  text-align: center;
-
-  background: url("../images/anime-front.jpg") center/cover no-repeat;
 }
 
-/* overlay */
-.hero::after {
-  content: "";
+.hero-video {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.75)
+    );
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 700px;
-  padding: 0 var(--space-md);
+
+  text-align: center;
+  color: white;
 }
 
-.hero h1 {
-  font-size: clamp(36px, 5vw, 52px);
-  margin-bottom: var(--space-sm);
+.hero-content h1 {
+  font-size: 5rem;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
 }
 
-.hero p {
-  margin-bottom: var(--space-md);
-  color: var(--text-muted);
+.hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
 }
 
-.hero .btn {
-  margin-top: var(--space-sm);
+.hero-btn {
+  display: inline-block;
+
+  padding: 14px 30px;
+
+  background: white;
+  color: black;
+
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 999px;
+
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  transform: scale(1.05);
+}
+
+.about-hero {
+  min-height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 40px 20px;
 }
 
 /* ============================= */
-/* 🔍 SEARCH (SEPARATE SECTION) */
+/* 🔍 PREMIUM SEARCH SECTION */
 /* ============================= */
 
 .home-search {
-  background: var(--bg-elevated);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  padding: 60px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #0d0d0d,
+      #111
+    );
+
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .search-box {
+  width: 100%;
+  max-width: 650px;
+
   display: flex;
-  justify-content: center;
-  gap: var(--space-sm);
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 18px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.04);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  transition: 0.3s;
+}
+
+.search-box:hover {
+  border-color: rgba(255,255,255,0.16);
 }
 
 .search-box input {
-  width: 400px;
-  max-width: 100%;
+  flex: 1;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: white;
+  font-size: 15px;
+}
+
+.search-box input::placeholder {
+  color: rgba(255,255,255,0.45);
+}
+
+.search-box button {
+  border: none;
+  background: white;
+  color: black;
+
+  padding: 10px 18px;
+
+  border-radius: 999px;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  transform: scale(1.05);
 }
 
 .quick-tags {
-  margin-top: var(--space-sm);
-  text-align: center;
+  margin-top: 22px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 .quick-tags a {
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.05);
+
+  color: rgba(255,255,255,0.7);
+
+  text-decoration: none;
   font-size: 13px;
-  color: var(--text-muted);
-  margin: 0 6px;
+
+  transition: 0.3s;
 }
 
 .quick-tags a:hover {
-  color: var(--primary);
+  background: rgba(255,255,255,0.12);
+  color: white;
 }
 
 /* ============================= */
-/* 🧩 CATEGORY (PRO GRID) */
+/* CATEGORY */
 /* ============================= */
-
-.cat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--space-lg);
-}
 
 .cat-card {
   position: relative;
+
   height: 320px;
-  border-radius: var(--radius-md);
+
+  border-radius: 18px;
   overflow: hidden;
+
   cursor: pointer;
+
+  display: flex;
+  align-items: flex-end;
+
+  padding: 22px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  transition: transform 0.4s ease;
 }
 
-.cat-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition);
+/* smoother hover */
+.cat-card:hover {
+  transform: translateY(-6px);
 }
 
-/* hover zoom */
-.cat-card:hover img {
-  transform: scale(1.1);
-}
-
-/* overlay */
+/* dark overlay */
 .cat-card::after {
   content: "";
+
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.4);
-  transition: var(--transition);
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.75),
+      rgba(0,0,0,0.15)
+    );
+
+  transition: 0.4s;
 }
 
 .cat-card:hover::after {
-  background: rgba(0,0,0,0.65);
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,0.82),
+      rgba(0,0,0,0.25)
+    );
 }
 
 /* title */
 .cat-card h3 {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
+  position: relative;
   z-index: 2;
-  font-size: 18px;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: white;
+
+  letter-spacing: 1px;
 }
 
 /* ============================= */
@@ -258,6 +394,75 @@ footer {
 
   .cat-card {
     height: 240px;
+  }
+
+}
+
+/* ============================= */
+/* SECTION SPACING FIX */
+/* ============================= */
+
+.hero,
+.home-search,
+.categories,
+.featured,
+.story-section,
+.trust-section,
+.features,
+.reviews,
+.delivery,
+footer {
+  margin-top: 80px;
+}
+
+/* hero top spacing remove */
+.hero {
+  margin-top: 0;
+}
+
+/* section title breathing */
+.section-title {
+  margin-bottom: 36px;
+}
+
+/* story spacing */
+.story-content {
+  gap: 18px;
+}
+
+/* trust cards */
+.trust {
+  margin-top: 30px;
+}
+
+/* features list */
+.features ul {
+  margin-top: 20px;
+}
+
+/* reviews */
+.reviews p {
+  margin-bottom: 14px;
+}
+
+/* footer */
+footer {
+  padding-top: 50px;
+}
+
+@media (max-width: 768px) {
+
+  .hero,
+  .home-search,
+  .categories,
+  .featured,
+  .story-section,
+  .trust-section,
+  .features,
+  .reviews,
+  .delivery,
+  footer {
+    margin-top: 55px;
   }
 
 }

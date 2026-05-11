@@ -3,9 +3,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
-require("dotenv").config();
-const Razorpay = require("razorpay");
-
 const app = express();
 
 /* =========================
@@ -43,33 +40,9 @@ app.use("/api/orders", orderRoutes);
 /* 🔥 ADD THIS */
 app.use("/api/upload", uploadRoutes);
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET
-});
-
-
 /* =========================
    HEALTH CHECK
 ========================= */
-app.post("/api/payment/create-order", async (req, res) => {
-  try {
-    const { amount } = req.body;
-
-    const order = await razorpay.orders.create({
-      amount: amount * 100,
-      currency: "INR",
-      receipt: "rcpt_" + Date.now()
-    });
-
-    res.json(order);
-
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: "Order creation failed" });
-  }
-});
-
 app.get("/api/health", (req, res) => {
   res.json({ status: "OK" });
 });

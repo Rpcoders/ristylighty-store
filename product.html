@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>Product | ristylighty</title>
 
   <!-- FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
   <!-- BASE -->
   <link rel="stylesheet" href="css/base/reset.css">
@@ -25,62 +31,192 @@
 
   <!-- UTILS -->
   <link rel="stylesheet" href="css/utils/animations.css">
+
 </head>
 
 <body>
 
+
 <!-- NAVBAR -->
 <nav class="navbar">
+
   <div class="logo">
-    <img src="images/logo.png" style="height:30px; vertical-align:middle;">
+
+    <img src="images/logo.png"
+         style="height:30px; vertical-align:middle;">
+
     ristylighty
+
   </div>
 
   <div class="nav-links">
+
     <a href="index.html">Home</a>
+
     <a href="shop.html">Shop</a>
+
+    <a href="collections.html">Collections</a>
+
+    <a href="about.html">About</a>
+
   </div>
 
   <div class="nav-icons">
+
     <a href="cart.html">🛒</a>
+
   </div>
+
 </nav>
+
 
 <!-- PRODUCT PAGE -->
 <section class="container section">
 
   <div class="grid grid-2">
 
-    <!-- LEFT: IMAGE -->
+
+    <!-- LEFT -->
     <div class="product-images card">
-      <img id="mainImage" style="width:100%; border-radius:10px;">
+      <video
+       id="heroVideo"
+       autoplay
+       muted
+       loop
+       playsinline
+       style="
+         width:100%;
+         border-radius:12px;
+         margin-bottom:12px;
+         display:none;
+         object-fit:cover;
+      "
+     ></video>
 
-      <div class="thumbs" id="thumbContainer" style="display:flex; gap:10px; margin-top:10px;"></div>
-    </div>
+      <img
+        id="mainImage"
+        src="/images/anime-front.jpg"
+        style="
+          width:100%;
+          border-radius:12px;
+          object-fit:cover;
+        "
+      >
 
-    <!-- RIGHT: DETAILS -->
-    <div class="product-details">
+      <!-- THUMBNAILS -->
+      <div
+        class="thumbs"
+        id="thumbContainer"
+        style="
+          display:flex;
+          gap:10px;
+          margin-top:12px;
+          flex-wrap:wrap;
+        "
+      >
 
-      <h1 id="productName"></h1>
-
-      <p style="font-size:20px; margin:10px 0;" id="productPrice"></p>
-
-      <p class="desc">
-        Premium oversized anime tee. Breathable fabric with long-lasting print.
-      </p>
-
-      <!-- SIZE -->
-      <div class="sizes" style="display:flex; gap:10px; margin:15px 0;">
-        <button class="btn btn-outline">S</button>
-        <button class="btn btn-outline">M</button>
-        <button class="btn btn-outline">L</button>
-        <button class="btn btn-outline">XL</button>
       </div>
 
-      <!-- ACTION -->
-      <button onclick="addToCart()" class="btn btn-primary">
-        Add to Cart
-      </button>
+    </div>
+
+
+    <!-- RIGHT -->
+    <div class="product-details">
+
+      <h1 id="productName">
+        Loading...
+      </h1>
+
+
+      <p
+        id="productPrice"
+        style="
+          font-size:24px;
+          font-weight:600;
+          margin:14px 0;
+        "
+      >
+        ₹0
+      </p>
+
+
+      <p class="desc">
+
+        Premium oversized anime tee.
+        Breathable fabric with
+        long-lasting print.
+
+      </p>
+
+
+      <!-- SIZE -->
+      <div
+        class="sizes"
+        style="
+          display:flex;
+          gap:12px;
+          margin:22px 0;
+          flex-wrap:wrap;
+        "
+      >
+
+        <button
+          class="btn btn-outline"
+          data-size="S"
+        >
+          S
+        </button>
+
+        <button
+          class="btn btn-outline"
+          data-size="M"
+        >
+          M
+        </button>
+
+        <button
+          class="btn btn-outline"
+          data-size="L"
+        >
+          L
+        </button>
+
+        <button
+          class="btn btn-outline"
+          data-size="XL"
+        >
+          XL
+        </button>
+
+      </div>
+
+
+      <!-- ACTIONS -->
+      <div
+        style="
+          display:flex;
+          gap:14px;
+          flex-wrap:wrap;
+          margin-top:20px;
+        "
+      >
+
+        <button
+          onclick="addToCart()"
+          class="btn btn-primary"
+        >
+          Add to Cart
+        </button>
+
+
+        <button
+          onclick="buyNow()"
+          class="btn btn-outline"
+        >
+          Buy Now
+        </button>
+
+      </div>
 
     </div>
 
@@ -88,14 +224,25 @@
 
 </section>
 
-<!-- RELATED / SUGGESTIONS -->
+
+<!-- RELATED -->
 <section class="container section">
+
   <div class="section-title">
-    <h2>You May Also Like</h2>
+
+    <h2>
+      You May Also Like
+    </h2>
+
   </div>
 
-  <div class="grid grid-auto" id="relatedProducts"></div>
+  <div
+    class="grid grid-auto"
+    id="relatedProducts"
+  ></div>
+
 </section>
+
 
 <!-- SCRIPT -->
 <script src="js/product.js"></script>

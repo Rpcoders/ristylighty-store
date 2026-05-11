@@ -22,16 +22,22 @@ const productSchema = new mongoose.Schema({
     }
   ],
 
-  // BACKWARD COMPATIBILITY (optional)
-  image: {
-    type: String
-  },
+  // BACKWARD COMPATIBILITY
+image: {
+  type: String
+},
 
-  category: {
-    type: String,
-    enum: ["anime", "oversized", "trending"],
-    default: "anime"
-  },
+// 🔥 HERO VIDEO 
+video: {
+  type: String,
+  default: ""
+},
+
+category: {
+  type: String,
+  enum: ["anime", "oversized", "trending", "T-shirt"],
+  default: "anime"
+},
 
   // 🔥 PRODUCT STORY (your USP)
   story: {

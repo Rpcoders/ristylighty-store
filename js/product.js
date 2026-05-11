@@ -1,5 +1,5 @@
 // ============================
-// 🔥 PART 1 (FIXED CORE + SIZE + ADD TO CART)
+// 🔥 PART 1 (FULL FIXED)
 // ============================
 
 const params = new URLSearchParams(window.location.search);
@@ -15,15 +15,24 @@ const token = localStorage.getItem("token");
 // 🔥 INIT SAFE LOAD
 // ============================
 document.addEventListener("DOMContentLoaded", () => {
+
   fetch("/api/products")
     .then(res => res.json())
     .then(data => {
-      allProducts = Array.isArray(data) ? data : (data.products || []);
 
-      product = allProducts.find(p => p._id === id);
+      allProducts = Array.isArray(data)
+        ? data
+        : (data.products || []);
+
+      product = allProducts.find(
+        p => String(p._id) === String(id)
+      );
 
       if (!product) {
-        document.body.innerHTML = "<h1 style='text-align:center'>Product not found</h1>";
+
+        document.body.innerHTML =
+          "<h1 style='text-align:center'>Product not found</h1>";
+
         return;
       }
 
@@ -31,8 +40,12 @@ document.addEventListener("DOMContentLoaded", () => {
       setupSizeUI();
       renderRelatedProducts();
       setupImageSwitch();
+
     })
-    .catch(err => console.error("Fetch error:", err));
+    .catch(err => {
+      console.error("Fetch error:", err);
+    });
+
 });
 
 
@@ -40,12 +53,22 @@ document.addEventListener("DOMContentLoaded", () => {
 // 🔥 RENDER PRODUCT
 // ============================
 function renderProduct() {
-  document.getElementById("mainImage").src = product.image || "/images/anime-front.jpg";
-  document.getElementById("productName").innerText = product.name;
-  document.getElementById("productPrice").innerText = "₹" + Number(product.price || 0);
+
+  document.getElementById("mainImage").src =
+    product.image || "/images/anime-front.jpg";
+
+  document.getElementById("productName").innerText =
+    product.name;
+
+  document.getElementById("productPrice").innerText =
+    "₹" + Number(product.price || 0);
 
   const desc = document.querySelector(".desc");
-  if (desc) desc.innerText = generateStory(product);
+
+  if (desc) {
+    desc.innerText = generateStory(product);
+  }
+
 }
 
 
@@ -53,18 +76,31 @@ function renderProduct() {
 // 🔥 STORY ENGINE
 // ============================
 function generateStory(p) {
-  if (p.category === "anime") return "Anime-inspired premium drop.";
-  if (p.category === "oversized") return "Oversized streetwear comfort fit.";
-  if (p.category === "trending") return "Trending item — limited stock.";
+
+  if (p.category === "anime") {
+    return "Anime-inspired premium drop.";
+  }
+
+  if (p.category === "oversized") {
+    return "Oversized streetwear comfort fit.";
+  }
+
+  if (p.category === "trending") {
+    return "Trending item — limited stock.";
+  }
+
   return "Premium quality fashion product.";
+
 }
 
 
 // ============================
-// 🔥 SIZE SYSTEM (FULL FIX)
+// 🔥 SIZE SYSTEM
 // ============================
 function setupSizeUI() {
-  const buttons = document.querySelectorAll(".sizes button");
+
+  const buttons =
+    document.querySelectorAll(".sizes button");
 
   if (!buttons.length) {
     console.warn("No size buttons found");
@@ -72,175 +108,263 @@ function setupSizeUI() {
   }
 
   buttons.forEach(btn => {
+
     btn.addEventListener("click", () => {
 
-      // remove all active
-      buttons.forEach(b => b.classList.remove("active"));
+      buttons.forEach(b => {
+        b.classList.remove("active");
+      });
 
-      // add active
       btn.classList.add("active");
 
-      // FIXED LINE
-      selectedSize = btn.dataset.size || btn.innerText.trim();
+      selectedSize =
+        btn.dataset.size || btn.innerText.trim();
 
       console.log("Selected size:", selectedSize);
 
       showToast("Size selected: " + selectedSize);
+
     });
+
   });
+
 }
 
 
 // ============================
-// 🔥 ADD TO CART (FULL SAFE FIX)
+// 🔥 ADD TO CART (FULL FIX)
 // ============================
 async function addToCart() {
+
   if (!selectedSize) {
     showToast("Select size first");
     return;
   }
 
-  const payload = {
-    productId: product._id,
-    name: product.name,
-    price: Number(product.price || 0),
-    image: product.image || "/images/anime-front.jpg",
-    size: selectedSize
-  };
+  // =========================
+  // 🔥 LOCAL STORAGE FIRST
+  // =========================
 
-  // ================= BACKEND =================
+  let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+  const existing = cart.find(item => {
+
+    return (
+      String(item.id) === String(product._id) &&
+      item.size === selectedSize
+    );
+
+  });
+
+  if (existing) {
+
+    existing.qty =
+      Number(existing.qty || 1) + 1;
+
+  } else {
+
+    cart.push({
+
+      id: product._id,
+
+      name: product.name,
+
+      price: Number(product.price || 0),
+
+      image:
+        product.image ||
+        "/images/anime-front.jpg",
+
+      size: selectedSize,
+
+      qty: 1
+
+    });
+
+  }
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(cart)
+  );
+
+  console.log(
+    "✅ Local cart updated:",
+    JSON.parse(localStorage.getItem("cart"))
+  );
+
+  // =========================
+  // 🔥 BACKEND OPTIONAL
+  // =========================
+
   if (token) {
+
     try {
-      const res = await fetch("/api/cart/add", {
+
+      await fetch("/api/cart/add", {
+
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
           "Authorization": "Bearer " + token
         },
-        body: JSON.stringify(payload)
+
+        body: JSON.stringify({
+          productId: product._id,
+          size: selectedSize,
+          qty: 1
+        })
+
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        showToast(data.error || "Failed to add");
-        return;
-      }
-
-      showToast("Added to cart");
-      return;
-
     } catch (err) {
-      console.error("Backend error:", err);
-      showToast("Server error");
-      return;
+
+      console.error(
+        "Backend cart error:",
+        err
+      );
     }
+
   }
 
-  // ================= LOCAL =================
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  const existing = cart.find(
-    i => i.id === product._id && i.size === selectedSize
-  );
-
-  if (existing) {
-    existing.qty = (existing.qty || 1) + 1;
-  } else {
-    cart.push({
-      id: product._id,
-      name: product.name,
-      price: Number(product.price || 0),
-      size: selectedSize,
-      image: product.image || "/images/anime-front.jpg",
-      qty: 1
-    });
-  }
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-
-  console.log("Cart updated:", cart);
   showToast("Added to cart");
+
 }
-// ============================
-// 🔥 PART 2 (RELATED + IMAGE + BUY + TOAST)
-// ============================
 
 // ============================
-// 🔥 RELATED PRODUCTS (FIXED IMAGES)
+// 🔥 PART 2 (FULL FIXED)
+// ============================
+
+
+// ============================
+// 🔥 RELATED PRODUCTS
 // ============================
 function renderRelatedProducts() {
-  const container = document.getElementById("relatedProducts");
+
+  const container =
+    document.getElementById("relatedProducts");
+
   if (!container) return;
 
   const related = allProducts
-    .filter(p => p.category === product.category && p._id !== product._id)
+    .filter(p => {
+
+      return (
+        p.category === product.category &&
+        String(p._id) !== String(product._id)
+      );
+
+    })
     .slice(0, 4);
 
   container.innerHTML = "";
 
   if (!related.length) {
-    container.innerHTML = "<p>No similar products</p>";
+
+    container.innerHTML =
+      "<p>No similar products</p>";
+
     return;
   }
 
   related.forEach(p => {
-    const img = p.image || "/images/anime-front.jpg";
+
+    const img =
+      p.image || "/images/anime-front.jpg";
 
     container.innerHTML += `
+
       <div class="card product-card">
-        <img src="${img}" onerror="this.src='/images/anime-front.jpg'">
+
+        <img
+          src="${img}"
+          onerror="this.src='/images/anime-front.jpg'"
+        >
+
         <h3>${p.name}</h3>
-        <p>₹${Number(p.price || 0)}</p>
-        <a href="product.html?id=${p._id}">View</a>
+
+        <p>
+          ₹${Number(p.price || 0)}
+        </p>
+
+        <a href="product.html?id=${p._id}">
+          View
+        </a>
+
       </div>
+
     `;
+
   });
+
 }
 
 
 // ============================
-// 🔥 IMAGE SWITCH (THUMBNAIL FIX)
+// 🔥 IMAGE SWITCH
 // ============================
 function setupImageSwitch() {
-  const main = document.getElementById("mainImage");
-  const thumbs = document.querySelectorAll(".thumb");
+
+  const main =
+    document.getElementById("mainImage");
+
+  const thumbs =
+    document.querySelectorAll(".thumb");
 
   if (!thumbs.length) return;
 
   thumbs.forEach(img => {
+
     img.addEventListener("click", () => {
+
       main.src = img.src;
+
     });
+
   });
+
 }
 
 
 // ============================
-// 🔥 QUICK BUY (SAFE)
+// 🔥 QUICK BUY
 // ============================
-function buyNow() {
+async function buyNow() {
+
   if (!selectedSize) {
+
     showToast("Select size first");
+
     return;
   }
 
-  addToCart();
+  await addToCart();
 
   setTimeout(() => {
+
     window.location.href = "cart.html";
-  }, 400);
+
+  }, 300);
+
 }
 
 
 // ============================
-// 🔥 TOAST SYSTEM (STABLE)
+// 🔥 TOAST SYSTEM
 // ============================
 function showToast(msg) {
-  const existing = document.querySelector(".toast-msg");
-  if (existing) existing.remove();
+
+  const existing =
+    document.querySelector(".toast-msg");
+
+  if (existing) {
+    existing.remove();
+  }
 
   const t = document.createElement("div");
+
   t.className = "toast-msg";
 
   t.innerText = msg;
@@ -250,20 +374,37 @@ function showToast(msg) {
   t.style.right = "20px";
   t.style.background = "#111";
   t.style.color = "#fff";
-  t.style.padding = "10px 16px";
-  t.style.borderRadius = "6px";
+  t.style.padding = "12px 18px";
+  t.style.borderRadius = "10px";
+  t.style.fontSize = "14px";
+  t.style.fontWeight = "600";
+  t.style.boxShadow =
+    "0 10px 30px rgba(0,0,0,0.3)";
   t.style.zIndex = "9999";
   t.style.opacity = "0";
+  t.style.transform = "translateY(10px)";
   t.style.transition = "0.3s";
 
   document.body.appendChild(t);
 
   setTimeout(() => {
+
     t.style.opacity = "1";
+    t.style.transform = "translateY(0px)";
+
   }, 50);
 
   setTimeout(() => {
+
     t.style.opacity = "0";
-    setTimeout(() => t.remove(), 300);
+    t.style.transform = "translateY(10px)";
+
+    setTimeout(() => {
+
+      t.remove();
+
+    }, 300);
+
   }, 2000);
+
 }

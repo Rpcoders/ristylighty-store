@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
 // ✅ ADD PRODUCT
 router.post("/", async (req, res) => {
   try {
-    const { name, price, image, category } = req.body;
+    const { name, price, image, video, category } = req.body;
 
     if (!name || !price || !image) {
       return res.status(400).json({ error: "Missing fields" });
@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
       name,
       price,
       image,
+      video,
       category
     });
 
@@ -40,11 +41,11 @@ router.post("/", async (req, res) => {
 // ✅ UPDATE PRODUCT
 router.put("/:id", async (req, res) => {
   try {
-    const { name, price, image, category } = req.body;
+    const { name, price, image, video, category } = req.body;
 
     const updated = await Product.findByIdAndUpdate(
       req.params.id,
-      { name, price, image, category },
+      { name, price, image, video, category },
       { new: true }
     );
 

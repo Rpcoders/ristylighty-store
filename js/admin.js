@@ -207,7 +207,28 @@ fileInput.addEventListener("change", () => {
   preview.style.display = "block";
 });
 
+function uploadVideo() {
+  const file = document.getElementById("videoFile").files[0];
 
+  if (!file) {
+    alert("Select video first");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("video", file);
+
+  fetch("/api/upload-video", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("video").value = data.url;
+    alert("Video uploaded");
+  })
+  .catch(err => console.error(err));
+}
 
 
 /* ========= DELETE ========= */

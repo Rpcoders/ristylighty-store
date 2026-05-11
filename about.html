@@ -54,6 +54,7 @@
 <section class="hero">
   <div class="hero-overlay">
     <div class="hero-content">
+      
       <h1>Not Just Clothes. Identity.</h1>
       <p>We don’t sell t-shirts. We sell attitude.</p>
     </div>
@@ -133,9 +134,58 @@
 <!-- VISUAL STORY -->
 <section class="visual-story container">
 
-  <div class="story-img">
-    <img src="images/anime-model.jpg">
-  </div>
+  <div class="story-img"></div>
+    <div id="aboutProduts"></div>
+
+  <script>
+
+async function loadProducts() {
+
+  try {
+
+    const res = await fetch("/api/products");
+
+    const data = await res.json();
+
+    const products = Array.isArray(data)
+      ? data
+      : (data.products || []);
+
+    const container =
+      document.getElementById("aboutProducts");
+
+    container.innerHTML = "";
+
+    products.slice(0, 4).forEach(p => {
+
+      container.innerHTML += `
+
+        <div class="about-card">
+
+          <img
+            src="${p.image}"
+            style="width:200px;border-radius:10px;"
+          >
+
+          <h3>${p.name}</h3>
+
+        </div>
+
+      `;
+
+    });
+
+  } catch (err) {
+
+    console.error(err);
+
+  }
+
+}
+
+loadProducts();
+
+</script>
 
   <div class="story-text">
     <h2>More Than Just a Print</h2>
